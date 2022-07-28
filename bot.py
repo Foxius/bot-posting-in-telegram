@@ -1,0 +1,41 @@
+import telebot
+from telebot import types
+
+bot = telebot.TeleBot("5449636806:AAFoXz0_5Pgb-LdbHG8mpgBLUoNOlrYrP8g")
+
+@bot.message_handler(commands=['start', 'help'])
+def send_welcome(message):
+	keyboard=types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+	moscow = types.KeyboardButton("Москва")
+	nonmoscow = types.KeyboardButton("Не Москва")
+	keyboard.add(moscow, nonmoscow)
+	bot.reply_to(message, "Выберите регион")
+	if message.text=="Москва":
+		bot.reply_to(message, "Выберите район",reply_markup=types.ReplyKeyboardRemove())
+		keyboard=types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+		central = types.KeyboardButton("Центральный")
+		keyboard.add(central)
+		north = types.KeyboardButton("Северный")
+		keyboard.add(north)
+		northeast = types.KeyboardButton("Северо-Восточный")
+		keyboard.add(northeast)
+		east = types.KeyboardButton("Восточный")
+		keyboard.add(east)
+		southeast = types.KeyboardButton("Юго-Восточный")
+		keyboard.add(southeast)
+		south = types.KeyboardButton("Южный")
+		keyboard.add(south)
+		southwest = types.KeyboardButton("Юго-Западный")
+		keyboard.add(southwest)
+		west = types.KeyboardButton("Западный")
+		keyboard.add(west)
+		northwest = types.KeyboardButton("Северо-Западный")
+		keyboard.add(northwest)
+		greencity = types.KeyboardButton("Зеленоградский")
+		keyboard.add(greencity)
+		newmoscow = types.KeyboardButton("Новомосковский")
+		keyboard.add(newmoscow)
+		troick = types.KeyboardButton("Троицкий")
+		keyboard.add(troick)
+
+bot.infinity_polling()
